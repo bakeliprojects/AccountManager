@@ -1,0 +1,18 @@
+<resources>
+    <string name="app_name">AccountManager</string>
+    <string name="checkingaccount">CheckingAccount</string>
+    <string name="savingaccount">SavingAccount</string>
+    <string name="businessaccount">BusinessAccount</string>
+    <string name="choisir_une_operation">Choisir une operation</string>
+    <string name="versement">Versement</string>
+    <string name="retrait">Retrait</string>
+    <string name="virement">Virement</string>
+    <string name="entrer_le_montant_a_verser">Entrer le montant a verser</string>
+    <string name="valider">valider</string>
+    <string name="entrer_le_montant_a_retirer">Entrer le montant a retirer</string>
+    <string name="_1_checkingaccount">1. CheckingAccount</string>
+    <string name="choisir_un_compte_destinataire">Choisir un compte destinataire</string>
+    <string name="_3_bussinessaccount">3. BussinessAccount</string>
+    <string name="ok">OK</string>
+    <string name="_2_savingaccount">2. SavingAccount</string>
+</resources>
