@@ -8,7 +8,7 @@
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="com.example.nogsdiva.accountmanager.OperationActivity">
+    tools:context="com.example.nogsdiva.accountmanager.activite.OperationActivity">
 
     <TextView
         android:text="@string/choisir_une_operation"
@@ -18,7 +18,10 @@
         android:layout_alignParentStart="true"
         android:layout_marginLeft="108dp"
         android:layout_marginStart="108dp"
-        android:id="@+id/textop" />
+        android:id="@+id/textop"
+        android:textColor="@color/colorPrimary"
+        android:textSize="18sp"
+        android:paddingLeft="8dp" />
 
     <Button
         android:text="@string/versement"
@@ -30,7 +33,9 @@
         android:layout_marginLeft="10dp"
         android:layout_marginStart="10dp"
         android:layout_marginTop="76dp"
-        android:id="@+id/btn4" />
+        android:id="@+id/btn4"
+        android:textSize="18sp"
+        android:textColor="@android:color/background_dark" />
 
     <Button
         android:text="@string/retrait"
@@ -40,7 +45,10 @@
         android:layout_alignLeft="@+id/btn4"
         android:layout_alignStart="@+id/btn4"
         android:layout_marginTop="51dp"
-        android:id="@+id/btn5" />
+        android:id="@+id/btn5"
+        android:textSize="18sp"
+        android:textColor="@android:color/black"
+        android:paddingRight="40dp" />
 
     <Button
         android:text="@string/virement"
@@ -50,5 +58,9 @@
         android:layout_alignLeft="@+id/btn5"
         android:layout_alignStart="@+id/btn5"
         android:layout_marginTop="58dp"
-        android:id="@+id/btn6" />
+        android:id="@+id/btn6"
+        android:paddingRight="20dp"
+        android:textColor="@android:color/background_dark"
+        android:textSize="18sp" />
+
 </RelativeLayout>
