@@ -8,12 +8,14 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.nogsdiva.accountmanager.R;
+import com.example.nogsdiva.accountmanager.java_class.Db;
 
 public class MainActivity extends AppCompatActivity {
 
     public final static String EXTRA_CHECK = "com.example.nogsdiva.accountmanager.CHECK";
     public final static String EXTRA_SAVE = "com.example.nogsdiva.accountmanager.SAVE";
     public final static String EXTRA_BUSS = "com.example.nogsdiva.accountmanager.BUSS";
+    public final static String EXTRA_SOLDE = "com.example.nogsdiva.accountmanager.SOLDE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,7 +28,8 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 // sendMessage(view);
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
-               Button c = (Button) findViewById(R.id.btn1);
+                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.checking.getSolde() + "FCFA");
+                Button c = (Button) findViewById(R.id.btn1);
                 String check = c.getText().toString();
                 intent.putExtra(EXTRA_CHECK, check);
                 startActivity(intent);
@@ -39,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v){
                 // sendMessage(view);
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
+                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.saving.getSolde() + "FCFA");
                 Button c = (Button) findViewById(R.id.btn2);
                 String save = c.getText().toString();
                 intent.putExtra(EXTRA_SAVE, save);
@@ -51,6 +55,7 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v3){
                 // sendMessage(view);
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
+                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.business.getSolde() + "FCFA");
               Button c = (Button) findViewById(R.id.btn3);
                 String buss = c.getText().toString();
                 intent.putExtra(EXTRA_BUSS, buss);

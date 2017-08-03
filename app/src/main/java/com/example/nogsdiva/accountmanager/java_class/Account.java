@@ -37,8 +37,6 @@ public class Account extends MainActivity {
 
         if( montant<solde){
             solde-=montant;
-            solde--;
-            System.out.println("operation reussie");
         }
         else
             System.out.println("votre solde est insuffissant");
@@ -49,12 +47,11 @@ public class Account extends MainActivity {
     public void verser(int montant){
 
         solde+=montant;
-        solde++;
     }
 
     public String afficher(int code){
 
-        return "Code du client : "+code+"\nSolde du Compte : "+solde;
+        return "Numero compte:" + code + "\nSolde Compte:" + solde;
 
     }
 

@@ -8,11 +8,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 
 import com.example.nogsdiva.accountmanager.java_class.BusinessAccount;
 import com.example.nogsdiva.accountmanager.java_class.CheckingAccount;
 import com.example.nogsdiva.accountmanager.R;
+import com.example.nogsdiva.accountmanager.java_class.Db;
 import com.example.nogsdiva.accountmanager.java_class.SavingAccount;
 
 
@@ -26,15 +28,11 @@ public class VersementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_versement);
 
-        Intent sld = getIntent();
-        String solde = sld.getStringExtra(OperationActivity.EXTRA_SOLDE);
-        TextView tv = (TextView) findViewById(R.id.initial);
-        tv.setText(solde);
-
+       // Intent sld = getIntent();
+       // String solde = sld.getStringExtra(OperationActivity.EXTRA_SOLDE);
        // TextView tv = (TextView) findViewById(R.id.initial);
-       // tv.setText("blablabla");
+       // tv.setText(solde);
 
-        //on recupere l'intention Intent from OperationActivity
 
         Button bttn7 = (Button) findViewById(R.id.btverse);
         bttn7.setOnClickListener(new View.OnClickListener() {
@@ -54,56 +52,46 @@ public class VersementActivity extends AppCompatActivity {
 
 
                 if (versementca != null) {
-                    // sendMessage(view);
-                    CheckingAccount a1 = new CheckingAccount(10, 0, 800000);
-                    int code1 = a1.getCode();
-
-
-                    //String textsolde = "solde intial:" + a1.getSolde();
-                    //Log.d(TAG, "onClick: voirsolde " + textsolde);
-                    //tv.setText(textsolde);
-
+                  Toast.makeText(VersementActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
                     Intent intcheck = new Intent(VersementActivity.this, DisplayActivity.class);
-                    //solde initial
-
                     EditText message = (EditText) findViewById(R.id.editnum);
                     String mess = message.getText().toString();
                     int mtt = Integer.parseInt(mess);
-                    // System.out.println("le montant a verser est :" + mtt+ "f");
-                    a1.verser(mtt);
+                    int code1 = Db.checking.getCode();
+                    Db.checking.verser(mtt);
                     //System.out.println(a1.afficher(code3));
-                    intcheck.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n" + a1.afficher(code1));
+                    intcheck.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n" + Db.checking.afficher(code1));
                     startActivity(intcheck);
                     finish();
                 }
 
                 else if (versementsa != null) {
+                    Toast.makeText(VersementActivity.this, "versement SavingAccount", Toast.LENGTH_SHORT).show();
                     Intent ints = new Intent(VersementActivity.this, DisplayActivity.class);
                     EditText messag = (EditText) findViewById(R.id.editnum);
                     String mes = messag.getText().toString();
                     int mtt1 = Integer.parseInt(mes);
-                    SavingAccount a2 = new SavingAccount(11, 0, 600000);
-                    int code2 = a2.getCode();
+                    int code2 = Db.saving.getCode();
                     // System.out.println("le montant a verser est :" + mtt+ "f");
-                    a2.verser(mtt1);
+                    Db.saving.verser(mtt1);
                     //System.out.println(a1.afficher(code3));
-                    ints.putExtra(EXTRA_MESSAGEV, a2.afficher(code2));
+                    ints.putExtra(EXTRA_MESSAGEV, Db.saving.afficher(code2));
                     startActivity(ints);
                     finish();
                 }
 
                 //  Businessaccount
                 else if (versementba != null) {
+                    Toast.makeText(VersementActivity.this, "versement BusinessAccount", Toast.LENGTH_SHORT).show();
                     Intent intenb = new Intent(VersementActivity.this, DisplayActivity.class);
                     EditText mt2 = (EditText) findViewById(R.id.editnum);
                     String messa = mt2.getText().toString();
                     int mtt2 = Integer.parseInt(messa);
-                    BusinessAccount a3 = new BusinessAccount(12, 0, 50000);
-                    int code3 = a3.getCode();
+                    int code3 = Db.business.getCode();
                     // System.out.println("le montant a verser est :" + mtt+ "f");
-                    a3.verser(mtt2);
+                    Db.business.verser(mtt2);
                     //System.out.println(a1.afficher(code3));
-                    intenb.putExtra(EXTRA_MESSAGEV, a3.afficher(code3));
+                    intenb.putExtra(EXTRA_MESSAGEV, Db.business.afficher(code3));
                     startActivity(intenb);
                     finish();
                 }

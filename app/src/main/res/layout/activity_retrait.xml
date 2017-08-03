@@ -22,7 +22,10 @@
         tools:text="Valider"
         android:text="Valider"
         android:textSize="18sp"
-        android:textColor="@color/colorPrimary" />
+        android:textColor="@android:color/black"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:background="@android:color/holo_green_light"
+        android:textStyle="bold|italic" />
 
     <EditText
         android:layout_width="wrap_content"
