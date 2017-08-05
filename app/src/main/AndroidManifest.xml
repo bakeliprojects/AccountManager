@@ -8,20 +8,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".activite.MainActivity">
+
+        <activity android:name=".activite.MainActivity"/>
+
+        <activity android:name=".activite.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name=".activite.OperationActivity"
             android:parentActivityName=".activite.MainActivity" />
         <activity android:name=".activite.VersementActivity" />
         <activity android:name=".activite.DisplayActivity" />
         <activity android:name=".activite.RetraitActivity" />
-        <activity android:name=".activite.VirementActivity"></activity>
+        <activity android:name=".activite.VirementActivity" />
+
     </application>
 
 </manifest>

@@ -23,10 +23,7 @@ public class RetraitActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrait);
 
-        //Intent sld = getIntent();
-        //String solde = sld.getStringExtra(OperationActivity.EXTRA_SOLDE);
-        //TextView tv = (TextView) findViewById(R.id.initialr);
-       // tv.setText(solde);
+
 
         Button br = (Button) findViewById(R.id.btnretrait);
         br.setOnClickListener(new View.OnClickListener(){

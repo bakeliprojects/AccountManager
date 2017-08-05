@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 import com.example.nogsdiva.accountmanager.R;
 import com.example.nogsdiva.accountmanager.java_class.Db;
@@ -21,6 +22,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent= getIntent();
+        String code = intent.getStringExtra(LoginActivity.EXTRA_CODE);
+
+        Toast.makeText(MainActivity.this, "votre code identifiant est" +code , Toast.LENGTH_SHORT).show();
 
         // ca c pour le boutton checkingAccount
         Button bttn1 = (Button) findViewById(R.id.btn1);

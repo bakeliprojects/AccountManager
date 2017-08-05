@@ -28,18 +28,13 @@ public class VersementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_versement);
 
-       // Intent sld = getIntent();
-       // String solde = sld.getStringExtra(OperationActivity.EXTRA_SOLDE);
-       // TextView tv = (TextView) findViewById(R.id.initial);
-       // tv.setText(solde);
-
 
         Button bttn7 = (Button) findViewById(R.id.btverse);
         bttn7.setOnClickListener(new View.OnClickListener() {
 
             public void onClick(View v7) {
 
-               // Toast.makeText(VersementActivity.this, "soldeinitial", Toast.LENGTH_SHORT).show();
+
 
                Intent intverserca = getIntent();
                 String versementca = intverserca.getStringExtra(OperationActivity.EXTRA_VERSEMENTCA);

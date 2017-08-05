@@ -24,11 +24,6 @@ public class VirementActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_virement);
 
-       // Intent sld = getIntent();
-       // String solde = sld.getStringExtra(OperationActivity.EXTRA_SOLDE);
-       // TextView tv = (TextView) findViewById(R.id.initialv);
-       // tv.setText(solde);
-
         Button bz = (Button)findViewById(R.id.btok);
         bz.setOnClickListener( new View.OnClickListener(){
             public void onClick(View v){
