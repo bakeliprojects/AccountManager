@@ -1,21 +1,28 @@
-package com.example.nogsdiva.accountmanager.java_class;
+package com.example.nogsdiva.accountmanager.modele;
 
-import com.example.nogsdiva.accountmanager.activite.MainActivity;
+import io.realm.RealmObject;
+import io.realm.annotations.PrimaryKey;
 
 /**
  * Created by nogsdiva on 26-Jul-17.
  */
 
-public class Account extends MainActivity {
+public class Account extends RealmObject {
 
-    private int code;
+
+    @PrimaryKey  private int code;
     private int montant;
     private int solde;
+
+
+    public Account() {
+    }
 
     public int getCode() {
 
         return code;
     }
+
 
     public int getMontant() {
         return montant;
@@ -24,13 +31,24 @@ public class Account extends MainActivity {
     public int getSolde() {
         return solde;
     }
+         //setters
+    public void setCode(int code) {
+        this.code = code;
+    }
+
+    public void setMontant(int montant) {
+        this.montant = montant;
+    }
+
+    public void setSolde(int solde) {
+        this.solde = solde;
+    }
 
     public Account(int code, int montant, int solde) {
         this.code = code;
         this.montant = montant;
         this.solde = solde;
     }
-
 
 
     public void retirer(int montant){

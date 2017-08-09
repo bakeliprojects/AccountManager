@@ -1,4 +1,4 @@
-package com.example.nogsdiva.accountmanager.activite;
+package com.example.nogsdiva.accountmanager.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;

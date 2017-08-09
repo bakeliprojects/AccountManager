@@ -1,4 +1,4 @@
-package com.example.nogsdiva.accountmanager.activite;
+package com.example.nogsdiva.accountmanager.activity;
 
 
 import android.content.Intent;
@@ -7,21 +7,16 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
 
-import com.example.nogsdiva.accountmanager.java_class.BusinessAccount;
-import com.example.nogsdiva.accountmanager.java_class.CheckingAccount;
 import com.example.nogsdiva.accountmanager.R;
-import com.example.nogsdiva.accountmanager.java_class.Db;
-import com.example.nogsdiva.accountmanager.java_class.SavingAccount;
+import com.example.nogsdiva.accountmanager.database.Db;
 
 
 public class VersementActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGEV = "com.example.nogsdiva.accountmanager.MESSAGEV";
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +42,8 @@ public class VersementActivity extends AppCompatActivity {
 
 
                 if (versementca != null) {
-                  Toast.makeText(VersementActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
+
+                    Toast.makeText(VersementActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
                     Intent intcheck = new Intent(VersementActivity.this, DisplayActivity.class);
                     EditText message = (EditText) findViewById(R.id.editnum);
                     String mess = message.getText().toString();
@@ -60,7 +56,7 @@ public class VersementActivity extends AppCompatActivity {
                     finish();
                 }
 
-                else if (versementsa != null) {
+         /**       else if (versementsa != null) {
                     Toast.makeText(VersementActivity.this, "versement SavingAccount", Toast.LENGTH_SHORT).show();
                     Intent ints = new Intent(VersementActivity.this, DisplayActivity.class);
                     EditText messag = (EditText) findViewById(R.id.editnum);
@@ -83,13 +79,12 @@ public class VersementActivity extends AppCompatActivity {
                     String messa = mt2.getText().toString();
                     int mtt2 = Integer.parseInt(messa);
                     int code3 = Db.business.getCode();
-                    // System.out.println("le montant a verser est :" + mtt+ "f");
                     Db.business.verser(mtt2);
                     //System.out.println(a1.afficher(code3));
                     intenb.putExtra(EXTRA_MESSAGEV, Db.business.afficher(code3));
                     startActivity(intenb);
                     finish();
-                }
+                }*/
 
             }
 

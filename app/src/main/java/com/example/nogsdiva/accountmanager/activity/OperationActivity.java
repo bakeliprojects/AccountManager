@@ -1,4 +1,4 @@
-package com.example.nogsdiva.accountmanager.activite;
+package com.example.nogsdiva.accountmanager.activity;
 
 
 import android.content.Intent;
@@ -11,10 +11,6 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.nogsdiva.accountmanager.R;
-import com.example.nogsdiva.accountmanager.java_class.BusinessAccount;
-import com.example.nogsdiva.accountmanager.java_class.CheckingAccount;
-import com.example.nogsdiva.accountmanager.java_class.Db;
-
 
 
 public class OperationActivity extends AppCompatActivity {
@@ -39,7 +35,7 @@ public class OperationActivity extends AppCompatActivity {
         Intent sld = getIntent();
          String solde = sld.getStringExtra(MainActivity.EXTRA_SOLDE);
          TextView tv = (TextView) findViewById(R.id.initial);
-         tv.setText(solde);
+         tv.setText( solde);
 
           Button bttn4 = (Button) findViewById(R.id.btn4);
           bttn4.setOnClickListener(new View.OnClickListener(){

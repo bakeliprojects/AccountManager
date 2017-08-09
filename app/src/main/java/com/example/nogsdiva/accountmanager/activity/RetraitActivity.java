@@ -1,4 +1,4 @@
-package com.example.nogsdiva.accountmanager.activite;
+package com.example.nogsdiva.accountmanager.activity;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -6,14 +6,13 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.nogsdiva.accountmanager.java_class.BusinessAccount;
-import com.example.nogsdiva.accountmanager.java_class.CheckingAccount;
 import com.example.nogsdiva.accountmanager.R;
-import com.example.nogsdiva.accountmanager.java_class.Db;
-import com.example.nogsdiva.accountmanager.java_class.SavingAccount;
+import com.example.nogsdiva.accountmanager.database.Db;
+
+import io.realm.Realm;
+import io.realm.RealmConfiguration;
 
 public class RetraitActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGER = "com.example.nogsdiva.accountmanager.retraitactivity.MESSAGER";
@@ -22,8 +21,6 @@ public class RetraitActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_retrait);
-
-
 
         Button br = (Button) findViewById(R.id.btnretrait);
         br.setOnClickListener(new View.OnClickListener(){
@@ -57,7 +54,7 @@ public class RetraitActivity extends AppCompatActivity {
              }
         }
 
-                else if(retirersa!=null){
+          /**      else if(retirersa!=null){
                       Intent intrtt = new Intent(RetraitActivity.this, DisplayActivity.class);
                       EditText mtrtt = (EditText) findViewById(R.id.editretrait);
                       String message = mtrtt.getText().toString();
@@ -89,9 +86,10 @@ public class RetraitActivity extends AppCompatActivity {
                 startActivity(intvrt);
                 finish();}
 
-                  }
+                  }*/
                            }
         });
+
 
     }
 }
