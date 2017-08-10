@@ -9,7 +9,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
 import com.example.nogsdiva.accountmanager.R;
 
 
@@ -32,10 +31,20 @@ public class OperationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_operation);
-        Intent sld = getIntent();
+
+       Intent sld = getIntent();
          String solde = sld.getStringExtra(MainActivity.EXTRA_SOLDE);
          TextView tv = (TextView) findViewById(R.id.initial);
-         tv.setText( solde);
+        // Realm realm = Realm.getDefaultInstance();
+        // RealmResults<Account> results = realm.where(Account.class)
+            // .findAllAsync();
+          //results.load();
+          //String output="";
+         // for(Account account:results){
+       //     output+=account.getSolde();
+       //   }
+       //   tv.setText("votre solde initial est: " + output + "FCFA");
+        tv.setText( solde);
 
           Button bttn4 = (Button) findViewById(R.id.btn4);
           bttn4.setOnClickListener(new View.OnClickListener(){
@@ -53,7 +62,7 @@ public class OperationActivity extends AppCompatActivity {
        if(check!= null){
 
            Toast.makeText(OperationActivity.this, " versement CheickingAccount", Toast.LENGTH_SHORT).show();
-            Intent verserca = new Intent(OperationActivity.this, VersementActivity.class);
+            Intent verserca = new Intent(OperationActivity.this, PaymentActivity.class);
              //solde initial
             //  verserca.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.checking.getSolde() + "FCFA");
                Button b = (Button)findViewById(R.id.btn4);
@@ -66,7 +75,7 @@ public class OperationActivity extends AppCompatActivity {
       else if(save!=null){
 
         Toast.makeText(OperationActivity.this, "versement SAVINGACCOUNT", Toast.LENGTH_SHORT).show();
-          Intent versersa = new Intent(OperationActivity.this, VersementActivity.class);
+          Intent versersa = new Intent(OperationActivity.this, PaymentActivity.class);
           //solde initial
            // versersa.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.saving.getSolde() + "FCFA");
              Button be = (Button)findViewById(R.id.btn4);
@@ -79,7 +88,7 @@ public class OperationActivity extends AppCompatActivity {
      else if(buss!=null){
 
        Toast.makeText(OperationActivity.this, " versement BusinessAccount", Toast.LENGTH_SHORT).show();
-         Intent verserba = new Intent(OperationActivity.this, VersementActivity.class);
+         Intent verserba = new Intent(OperationActivity.this, PaymentActivity.class);
            // verserba.putExtra(EXTRA_SOLDE, "solde initial:\n" + Db.business.getSolde() + "FCFA");
              Button bo= (Button)findViewById(R.id.btn4);
               String versementba = bo.getText().toString();
@@ -111,7 +120,7 @@ public class OperationActivity extends AppCompatActivity {
      // pour ChechingAccount
        if(check!=null ){
          Toast.makeText(OperationActivity.this, "retrait CheickingAccount", Toast.LENGTH_SHORT).show();
-          Intent retraitac = new Intent(OperationActivity.this, RetraitActivity.class);
+          Intent retraitac = new Intent(OperationActivity.this, DrawalActivity.class);
            //solde initial
             //  retraitac.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.checking.getSolde() + "FCFA");
                Button bi = (Button)findViewById(R.id.btn5);
@@ -124,7 +133,7 @@ public class OperationActivity extends AppCompatActivity {
 //POUR SAVING
       else if(save!=null){
         Toast.makeText(OperationActivity.this, " retrait SavingAccount", Toast.LENGTH_SHORT).show();
-          Intent retraitsa = new Intent(OperationActivity.this, RetraitActivity.class);
+          Intent retraitsa = new Intent(OperationActivity.this, DrawalActivity.class);
           //
            // retraitsa.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.saving.getSolde() + "FCFA");
               Button bz = (Button)findViewById(R.id.btn5);
@@ -137,7 +146,7 @@ public class OperationActivity extends AppCompatActivity {
 //pour bussiness
      else if (buss!=null){
        Toast.makeText(OperationActivity.this, " retrait BussinessAccount", Toast.LENGTH_SHORT).show();
-         Intent retraitba = new Intent(OperationActivity.this, RetraitActivity.class);
+         Intent retraitba = new Intent(OperationActivity.this, DrawalActivity.class);
           //solde initial
            // retraitba.putExtra(EXTRA_SOLDE, "solde initial:\n" + Db.business.getSolde() + "FCFA");
               Button bz = (Button)findViewById(R.id.btn5);
@@ -169,7 +178,7 @@ public class OperationActivity extends AppCompatActivity {
 //virement pour cheching ACCOUNT
       if(check!=null ){
         Toast.makeText(OperationActivity.this, "virement CheickingAccount", Toast.LENGTH_SHORT).show();
-          Intent vireac = new Intent(OperationActivity.this, VirementActivity.class);
+          Intent vireac = new Intent(OperationActivity.this, TransferActivity.class);
            //solde initial
              // vireac.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.checking.getSolde() + "FCFA");
                  Button bu = (Button)findViewById(R.id.btn6);
@@ -180,7 +189,7 @@ public class OperationActivity extends AppCompatActivity {
 //virement saving Account
     else if(save!=null ){
       Toast.makeText(OperationActivity.this, "virement SavingAccount", Toast.LENGTH_SHORT).show();
-        Intent viresa = new Intent(OperationActivity.this, VirementActivity.class);
+        Intent viresa = new Intent(OperationActivity.this, TransferActivity.class);
           //solde initial
          //  viresa.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.saving.getSolde() + "FCFA");
              Button bs = (Button)findViewById(R.id.btn6);
@@ -192,7 +201,7 @@ public class OperationActivity extends AppCompatActivity {
 
     else if(buss!=null ){
       Toast.makeText(OperationActivity.this, "virement BussinessAccount", Toast.LENGTH_SHORT).show();
-        Intent vireba = new Intent(OperationActivity.this, VirementActivity.class);
+        Intent vireba = new Intent(OperationActivity.this, TransferActivity.class);
           //solde initial
            // vireba.putExtra(EXTRA_SOLDE, "solde initial:\n" + Db.business.getSolde() + "FCFA");
               Button bj = (Button)findViewById(R.id.btn4);

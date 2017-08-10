@@ -15,10 +15,11 @@ import io.realm.annotations.PrimaryKey;
  */
 
 public class MyTestRealm {
+
     Realm realm ;
 
     public  MyTestRealm(){
-        realm.getDefaultInstance();
+        Realm.getDefaultInstance();
     }
     // methode enregistrer des donnees dans une table
     public void verifID (Account account){
@@ -36,13 +37,19 @@ public class MyTestRealm {
     }
 
     //recuperer des donnees dans la base realm
-    public String recover (Account account){
+    public String recover (){
 
-    RealmResults<Account> res =realm.where(Account.class)
-         .EqualTo("solde",account.getSolde())
-            .findAll();
+        Realm realm = Realm.getDefaultInstance();
+        RealmResults<Account> results = realm.where(Account.class)
+                .findAllAsync();
+        results.load();
+        String output="";
+        for(Account account:results){
+            output+=account.getSolde();
+        }
+        return output;
+       // tv.setText("votre solde initial est: " + output + "FCFA");
 
-     return null;
 }
 
 

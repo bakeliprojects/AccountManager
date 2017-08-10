@@ -23,10 +23,10 @@
         <activity
             android:name=".activity.OperationActivity"
             android:parentActivityName=".activity.MainActivity" />
-        <activity android:name=".activity.VersementActivity" />
+        <activity android:name=".activity.PaymentActivity" />
         <activity android:name=".activity.DisplayActivity" />
-        <activity android:name=".activity.RetraitActivity" />
-        <activity android:name=".activity.VirementActivity" />
+        <activity android:name=".activity.DrawalActivity" />
+        <activity android:name=".activity.TransferActivity" />
 
     </application>
 

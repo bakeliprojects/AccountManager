@@ -14,7 +14,7 @@ import com.example.nogsdiva.accountmanager.database.Db;
 import io.realm.Realm;
 import io.realm.RealmObject;
 
-public class VirementActivity extends AppCompatActivity {
+public class TransferActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGEM1 = "com.example.nogsdiva.accountmanager.virementactivity.MESSAGEM1";
     public final static String EXTRA_MESSAGEM2 = "com.example.nogsdiva.accountmanager.virementactivity.MESSAGEM2";
 

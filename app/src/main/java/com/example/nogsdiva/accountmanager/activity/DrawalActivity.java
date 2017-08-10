@@ -11,10 +11,7 @@ import android.widget.Toast;
 import com.example.nogsdiva.accountmanager.R;
 import com.example.nogsdiva.accountmanager.database.Db;
 
-import io.realm.Realm;
-import io.realm.RealmConfiguration;
-
-public class RetraitActivity extends AppCompatActivity {
+public class DrawalActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGER = "com.example.nogsdiva.accountmanager.retraitactivity.MESSAGER";
 
     @Override
@@ -37,16 +34,16 @@ public class RetraitActivity extends AppCompatActivity {
 
                   if(retirerca!=null){
 
-                Intent ca = new Intent(RetraitActivity.this, DisplayActivity.class);
+                Intent ca = new Intent(DrawalActivity.this, DisplayActivity.class);
                 EditText mt = (EditText) findViewById(R.id.editretrait);
                 String mg = mt.getText().toString();
                 int mtt = Integer.parseInt(mg);
                 int code1 = Db.checking.getCode();
                    if(Db.checking.getSolde()<=mtt){
-                   Toast.makeText(RetraitActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                   Toast.makeText(DrawalActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
         }
                    else{
-               Toast.makeText(RetraitActivity.this, "retrait CheckingAccount", Toast.LENGTH_SHORT).show();
+               Toast.makeText(DrawalActivity.this, "retrait CheckingAccount", Toast.LENGTH_SHORT).show();
                Db.checking.retirer(mtt);
                ca.putExtra(EXTRA_MESSAGER, Db.checking.afficher(code1));
                startActivity(ca);

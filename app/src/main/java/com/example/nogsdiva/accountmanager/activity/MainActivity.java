@@ -7,13 +7,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
-
 import com.example.nogsdiva.accountmanager.R;
-import com.example.nogsdiva.accountmanager.app.MyTestRealm;
-import com.example.nogsdiva.accountmanager.modele.Account;
-
-import io.realm.Realm;
-import io.realm.RealmResults;
+import com.example.nogsdiva.accountmanager.database.Db;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,7 +19,7 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
+    super.onCreate(savedInstanceState);
 
         //on instancie realm
 
@@ -38,28 +33,24 @@ public class MainActivity extends AppCompatActivity {
         // ca c pour le boutton checkingAccount
         Button bttn1 = (Button) findViewById(R.id.btn1);
         bttn1.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                // sendMessage(view);
-
+        public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
-
               // intent.putExtra(EXTRA_SOLDE, "solde initial:\n" + Db.checking.getSolde() + "FCFA");
-               MyTestRealm test = new MyTestRealm();
-                 Account account = new Account();
-                 intent.putExtra(EXTRA_SOLDE, "Solde initial" +  test.recover(account) + "FCFA");
-                 Button c = (Button) findViewById(R.id.btn1);
+                Db db = new Db();
+                intent.putExtra(EXTRA_SOLDE, "votre Solde initial est: " +  db.recoveC() + "FCFA");
+                Button c = (Button) findViewById(R.id.btn1);
                 String check = c.getText().toString();
                 intent.putExtra(EXTRA_CHECK, check);
                 startActivity(intent);
             }
         });
 
-/**         Button bttn2 = (Button) findViewById(R.id.btn2);
+         Button bttn2 = (Button) findViewById(R.id.btn2);
          bttn2.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
-                // sendMessage(view);
+         public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
-                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.saving.getSolde() + "FCFA");
+                Db db = new Db();
+                intent.putExtra(EXTRA_SOLDE,"Votre solde initial: "+db.recoveS()+" FCFA");
                 Button c = (Button) findViewById(R.id.btn2);
                 String save = c.getText().toString();
                 intent.putExtra(EXTRA_SAVE, save);
@@ -68,10 +59,11 @@ public class MainActivity extends AppCompatActivity {
 
         });
          Button bttn3 = (Button) findViewById(R.id.btn3);
-        bttn3.setOnClickListener(new View.OnClickListener(){
-            public void onClick(View v){
+         bttn3.setOnClickListener(new View.OnClickListener(){
+         public void onClick(View v){
                 Intent intent = new Intent(MainActivity.this, OperationActivity.class);
-                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + Db.business.getSolde() + "FCFA");
+                Db db = new Db();
+                intent.putExtra(EXTRA_SOLDE,"solde initial:\n" + db.recoveB() + "FCFA");
                 Button c = (Button) findViewById(R.id.btn3);
                 String buss = c.getText().toString();
                 intent.putExtra(EXTRA_BUSS, buss);
@@ -79,7 +71,7 @@ public class MainActivity extends AppCompatActivity {
             }
 
         });
- */
+
 
     }
 }

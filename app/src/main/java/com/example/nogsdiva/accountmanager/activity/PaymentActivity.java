@@ -12,9 +12,12 @@ import android.widget.Toast;
 
 import com.example.nogsdiva.accountmanager.R;
 import com.example.nogsdiva.accountmanager.database.Db;
+import com.example.nogsdiva.accountmanager.modele.CheckingAccount;
+
+import io.realm.Realm;
 
 
-public class VersementActivity extends AppCompatActivity {
+public class PaymentActivity extends AppCompatActivity {
 
     public final static String EXTRA_MESSAGEV = "com.example.nogsdiva.accountmanager.MESSAGEV";
 
@@ -31,34 +34,43 @@ public class VersementActivity extends AppCompatActivity {
 
 
 
-               Intent intverserca = getIntent();
-                String versementca = intverserca.getStringExtra(OperationActivity.EXTRA_VERSEMENTCA);
+               Intent verserca = getIntent();
+                String versementca = verserca.getStringExtra(OperationActivity.EXTRA_VERSEMENTCA);
 
-                Intent intversersa = getIntent();
-                String versementsa = intversersa.getStringExtra(OperationActivity.EXTRA_VERSEMENTSA);
+                Intent versersa = getIntent();
+                String versementsa = versersa.getStringExtra(OperationActivity.EXTRA_VERSEMENTSA);
 
-                Intent intverserba = getIntent();
-                String versementba = intverserba.getStringExtra(OperationActivity.EXTRA_VERSEMENTBA);
-
+                Intent verserba = getIntent();
+                String versementba = verserba.getStringExtra(OperationActivity.EXTRA_VERSEMENTBA);
 
                 if (versementca != null) {
-
-                    Toast.makeText(VersementActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
-                    Intent intcheck = new Intent(VersementActivity.this, DisplayActivity.class);
+                    Toast.makeText(PaymentActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
+                    Intent intcheck = new Intent(PaymentActivity.this, DisplayActivity.class);
                     EditText message = (EditText) findViewById(R.id.editnum);
                     String mess = message.getText().toString();
                     int mtt = Integer.parseInt(mess);
-                    int code1 = Db.checking.getCode();
-                    Db.checking.verser(mtt);
+                   // int code1 = Db.checking.getCode();
+                    Realm realm = Realm.getDefaultInstance();
+                    realm.beginTransaction();
+                    CheckingAccount check = new CheckingAccount();
+                    int code1 =check.getCode();
+                    int solde=check.getSolde();
+                    solde = solde+mtt;
+                    check.setSolde(solde);
+                   // check.verser(mtt);
+                    realm.copyToRealmOrUpdate(check);
+                    realm.commitTransaction();
+
+                    // Db.checking.verser(mtt);
                     //System.out.println(a1.afficher(code3));
                     intcheck.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n" + Db.checking.afficher(code1));
                     startActivity(intcheck);
                     finish();
                 }
 
-         /**       else if (versementsa != null) {
-                    Toast.makeText(VersementActivity.this, "versement SavingAccount", Toast.LENGTH_SHORT).show();
-                    Intent ints = new Intent(VersementActivity.this, DisplayActivity.class);
+     /**         else if (versementsa != null) {
+                    Toast.makeText(PaymentActivity.this, "versement SavingAccount", Toast.LENGTH_SHORT).show();
+                    Intent ints = new Intent(PaymentActivity.this, DisplayActivity.class);
                     EditText messag = (EditText) findViewById(R.id.editnum);
                     String mes = messag.getText().toString();
                     int mtt1 = Integer.parseInt(mes);
@@ -84,7 +96,7 @@ public class VersementActivity extends AppCompatActivity {
                     intenb.putExtra(EXTRA_MESSAGEV, Db.business.afficher(code3));
                     startActivity(intenb);
                     finish();
-                }*/
+                } */
 
             }
 

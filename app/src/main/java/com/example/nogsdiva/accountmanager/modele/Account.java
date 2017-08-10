@@ -7,7 +7,7 @@ import io.realm.annotations.PrimaryKey;
  * Created by nogsdiva on 26-Jul-17.
  */
 
-public class Account extends RealmObject {
+public  class Account extends  RealmObject{
 
 
     @PrimaryKey  private int code;

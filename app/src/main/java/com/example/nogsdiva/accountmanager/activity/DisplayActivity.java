@@ -17,16 +17,16 @@ public class DisplayActivity extends AppCompatActivity {
 
 
         Intent intcheck = getIntent();
-        String mess = intcheck.getStringExtra(VersementActivity.EXTRA_MESSAGEV);
+        String mess = intcheck.getStringExtra(PaymentActivity.EXTRA_MESSAGEV);
 
         Intent intc = getIntent();
-        String mesr = intc.getStringExtra(RetraitActivity.EXTRA_MESSAGER);
+        String mesr = intc.getStringExtra(DrawalActivity.EXTRA_MESSAGER);
                       //pour virement
         Intent in = getIntent();
-        String me = in.getStringExtra(VirementActivity.EXTRA_MESSAGEM1);
+        String me = in.getStringExtra(TransferActivity.EXTRA_MESSAGEM1);
 
        Intent in2 = getIntent();
-        String me2 = in2.getStringExtra(VirementActivity.EXTRA_MESSAGEM2);
+        String me2 = in2.getStringExtra(TransferActivity.EXTRA_MESSAGEM2);
 
         if(mess!=null){
             TextView textView = (TextView) findViewById(R.id.result1);
