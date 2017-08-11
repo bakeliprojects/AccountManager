@@ -32,71 +32,54 @@ public class PaymentActivity extends AppCompatActivity {
 
             public void onClick(View v7) {
 
+               Intent paymenIntent = getIntent();
+                String paymentca = paymenIntent.getStringExtra(OperationActivity.EXTRA_VERSEMENTCA);
 
+                Intent paymenIntent1 = getIntent();
+                String paymensa = paymenIntent1.getStringExtra(OperationActivity.EXTRA_VERSEMENTSA);
 
-               Intent verserca = getIntent();
-                String versementca = verserca.getStringExtra(OperationActivity.EXTRA_VERSEMENTCA);
+                Intent paymenIntent2 = getIntent();
+                String paymenba = paymenIntent2.getStringExtra(OperationActivity.EXTRA_VERSEMENTBA);
 
-                Intent versersa = getIntent();
-                String versementsa = versersa.getStringExtra(OperationActivity.EXTRA_VERSEMENTSA);
-
-                Intent verserba = getIntent();
-                String versementba = verserba.getStringExtra(OperationActivity.EXTRA_VERSEMENTBA);
-
-                if (versementca != null) {
+                if (paymentca != null) {
                     Toast.makeText(PaymentActivity.this, "versement CheckingAccount", Toast.LENGTH_SHORT).show();
                     Intent intcheck = new Intent(PaymentActivity.this, DisplayActivity.class);
                     EditText message = (EditText) findViewById(R.id.editnum);
                     String mess = message.getText().toString();
                     int mtt = Integer.parseInt(mess);
-                   // int code1 = Db.checking.getCode();
-                    Realm realm = Realm.getDefaultInstance();
-                    realm.beginTransaction();
-                    CheckingAccount check = new CheckingAccount();
-                    int code1 =check.getCode();
-                    int solde=check.getSolde();
-                    solde = solde+mtt;
-                    check.setSolde(solde);
-                   // check.verser(mtt);
-                    realm.copyToRealmOrUpdate(check);
-                    realm.commitTransaction();
-
-                    // Db.checking.verser(mtt);
-                    //System.out.println(a1.afficher(code3));
-                    intcheck.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n" + Db.checking.afficher(code1));
+                    Db db = new Db();
+                    db.paymenC(mtt);
+                    intcheck.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n" + db.displayC());
                     startActivity(intcheck);
                     finish();
                 }
 
-     /**         else if (versementsa != null) {
+           else if (paymensa != null) {
                     Toast.makeText(PaymentActivity.this, "versement SavingAccount", Toast.LENGTH_SHORT).show();
                     Intent ints = new Intent(PaymentActivity.this, DisplayActivity.class);
                     EditText messag = (EditText) findViewById(R.id.editnum);
                     String mes = messag.getText().toString();
                     int mtt1 = Integer.parseInt(mes);
-                    int code2 = Db.saving.getCode();
-                    // System.out.println("le montant a verser est :" + mtt+ "f");
-                    Db.saving.verser(mtt1);
-                    //System.out.println(a1.afficher(code3));
-                    ints.putExtra(EXTRA_MESSAGEV, Db.saving.afficher(code2));
+                    Db db = new Db();
+                    db.paymenS(mtt1);
+                    ints.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n"+ db.displayS());
                     startActivity(ints);
                     finish();
                 }
 
                 //  Businessaccount
-                else if (versementba != null) {
-                    Toast.makeText(VersementActivity.this, "versement BusinessAccount", Toast.LENGTH_SHORT).show();
-                    Intent intenb = new Intent(VersementActivity.this, DisplayActivity.class);
+                else if (paymenba != null) {
+                    Toast.makeText(PaymentActivity.this, "versement BusinessAccount", Toast.LENGTH_SHORT).show();
+                    Intent intenb = new Intent(PaymentActivity.this, DisplayActivity.class);
                     EditText mt2 = (EditText) findViewById(R.id.editnum);
                     String messa = mt2.getText().toString();
                     int mtt2 = Integer.parseInt(messa);
-                    int code3 = Db.business.getCode();
-                    Db.business.verser(mtt2);
-                    //System.out.println(a1.afficher(code3));
-                    intenb.putExtra(EXTRA_MESSAGEV, Db.business.afficher(code3));
+                    Db db = new Db();
+                    db.paymenB(mtt2);
+                    intenb.putExtra(EXTRA_MESSAGEV,"solde post_versement:\n " + db.displayB());
                     startActivity(intenb);
                     finish();
-                } */
+                }
 
             }
 

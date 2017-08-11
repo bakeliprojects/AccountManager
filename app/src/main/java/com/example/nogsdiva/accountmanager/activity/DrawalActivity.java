@@ -35,55 +35,55 @@ public class DrawalActivity extends AppCompatActivity {
                   if(retirerca!=null){
 
                 Intent ca = new Intent(DrawalActivity.this, DisplayActivity.class);
-                EditText mt = (EditText) findViewById(R.id.editretrait);
-                String mg = mt.getText().toString();
-                int mtt = Integer.parseInt(mg);
-                int code1 = Db.checking.getCode();
-                   if(Db.checking.getSolde()<=mtt){
-                   Toast.makeText(DrawalActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                  EditText mt = (EditText) findViewById(R.id.editretrait);
+                   String mg = mt.getText().toString();
+                   int mtt = Integer.parseInt(mg);
+                     if(Db.checking.getSolde()<=mtt){
+                     Toast.makeText(DrawalActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
         }
                    else{
                Toast.makeText(DrawalActivity.this, "retrait CheckingAccount", Toast.LENGTH_SHORT).show();
-               Db.checking.retirer(mtt);
-               ca.putExtra(EXTRA_MESSAGER, Db.checking.afficher(code1));
+                       Db db =  new Db();
+               db.drawalC(mtt);
+               ca.putExtra(EXTRA_MESSAGER, db.displayC());
                startActivity(ca);
                finish();
              }
         }
 
-          /**      else if(retirersa!=null){
-                      Intent intrtt = new Intent(RetraitActivity.this, DisplayActivity.class);
+           else if(retirersa!=null){
+                      Intent intrtt = new Intent(DrawalActivity.this, DisplayActivity.class);
                       EditText mtrtt = (EditText) findViewById(R.id.editretrait);
                       String message = mtrtt.getText().toString();
                       int sa = Integer.parseInt(message);
-                      int code1 = Db.saving.getCode();
                           if(Db.saving.getSolde()<=sa)
-                           Toast.makeText(RetraitActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                           Toast.makeText(DrawalActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                            else{
-                      Toast.makeText(RetraitActivity.this, "retrait SavingAccount", Toast.LENGTH_SHORT).show();
-                      Db.saving.retirer(sa);
-                      intrtt.putExtra(EXTRA_MESSAGER, Db.saving.afficher(code1));
+                      Toast.makeText(DrawalActivity.this, "retrait SavingAccount", Toast.LENGTH_SHORT).show();
+                              Db db = new Db();
+                      db.drawalS(sa);
+                      intrtt.putExtra(EXTRA_MESSAGER, db.displayS());
                       startActivity(intrtt);
                       finish();
                       }
                   }
 
                 else if(retirerba!=null){
-                Intent intvrt = new Intent(RetraitActivity.this, DisplayActivity.class);
+                Intent intvrt = new Intent(DrawalActivity.this, DisplayActivity.class);
                 EditText mtvrt = (EditText) findViewById(R.id.editretrait);
                 String message = mtvrt.getText().toString();
                 int ba = Integer.parseInt(message);
-                int code2 = Db.business.getCode();
                    if(Db.business.getSolde()<=ba)
-                    Toast.makeText(RetraitActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(DrawalActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                     else{
-                Toast.makeText(RetraitActivity.this, "retrait BusinessAccount", Toast.LENGTH_SHORT).show();
-                Db.business.retirer(ba);
-                intvrt.putExtra(EXTRA_MESSAGER, Db.business.afficher(code2));
+                Toast.makeText(DrawalActivity.this, "retrait BusinessAccount", Toast.LENGTH_SHORT).show();
+                       Db db = new Db();
+                db.drawalB(ba);
+                intvrt.putExtra(EXTRA_MESSAGER, db.displayB());
                 startActivity(intvrt);
                 finish();}
 
-                  }*/
+                  }
                            }
         });
 

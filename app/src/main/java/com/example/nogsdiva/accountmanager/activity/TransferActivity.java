@@ -7,12 +7,8 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
-
 import com.example.nogsdiva.accountmanager.R;
 import com.example.nogsdiva.accountmanager.database.Db;
-
-import io.realm.Realm;
-import io.realm.RealmObject;
 
 public class TransferActivity extends AppCompatActivity {
     public final static String EXTRA_MESSAGEM1 = "com.example.nogsdiva.accountmanager.virementactivity.MESSAGEM1";
@@ -27,7 +23,7 @@ public class TransferActivity extends AppCompatActivity {
         bz.setOnClickListener( new View.OnClickListener(){
             public void onClick(View v){
 
-         /**       Intent intent= getIntent();
+               Intent intent= getIntent();
                 String virementca = intent.getStringExtra(OperationActivity.EXTRA_VIREMENTCA) ;
 
                 Intent inten= getIntent();
@@ -38,52 +34,51 @@ public class TransferActivity extends AppCompatActivity {
 
                //virement dans chechingAccount
                 if(virementca!=null){
-
                     EditText editText = (EditText) findViewById(R.id.choix);
                     String e = editText.getText().toString();
                     int num = Integer.parseInt(e);
                     if(num==2){
 
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.checking.getCode();
-                        int code2 = Db.saving.getCode();
                             if(Db.checking.getSolde()<=mtt)
-                            Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                            else{
-                        Toast.makeText(VirementActivity.this, "checkingAccount vers SavingAccount", Toast.LENGTH_SHORT).show();
-                        Db.checking.virement(Db.saving,mtt);
-                        ca.putExtra(EXTRA_MESSAGEM1,"solde restant:\n " + Db.checking.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, "solde du compte beneficiaire:\n" + Db.saving.afficher(code2) + "FCFA");
+                        Toast.makeText(TransferActivity.this, "checkingAccount vers SavingAccount", Toast.LENGTH_SHORT).show();
+                                Db db = new Db();
+                                db.drawalC(mtt);
+                                db.paymenS(mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1,"solde restant:\n " + db.displayC() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, "solde du compte beneficiaire:\n" + db.displayS() + "FCFA");
                         startActivity(ca);
                         finish();
                        }
                     }
 
-                    else if(num==3){
+                  else if(num==3){
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.checking.getCode();
-                        int code2 = Db.business.getCode();
                             if(Db.checking.getSolde()<=mtt)
-                            Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                             else{
-                        Toast.makeText(VirementActivity.this, "ChechingAccount vers BusinessAccount", Toast.LENGTH_SHORT).show();
-                        Db.checking.virement(Db.business,mtt);
-                        ca.putExtra(EXTRA_MESSAGEM1,"solde restant:\n" + Db.checking.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, " solde compte beneficiaire:\n" + Db.business.afficher(code2) + "FCFA");
+                        Toast.makeText(TransferActivity.this, "ChechingAccount vers BusinessAccount", Toast.LENGTH_SHORT).show();
+                         Db db = new Db();
+                                db.drawalC(mtt);
+                                db.paymenB(mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1,"solde restant:\n" + db.displayC() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, " solde compte beneficiaire:\n" + db.displayB() + "FCFA");
                         startActivity(ca);
                         finish();
                      }
                     }
                     else
-                        Toast.makeText(VirementActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
 
                     }
 
@@ -95,19 +90,19 @@ public class TransferActivity extends AppCompatActivity {
                     int num = Integer.parseInt(e);
                     if(num==1){
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.saving.getCode();
-                        int code2 = Db.checking.getCode();
                             if(Db.saving.getSolde()<=mtt)
-                            Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                             else{
-                         Toast.makeText(VirementActivity.this, "SavingAccount vers CheckingAccount", Toast.LENGTH_SHORT).show();
-                         Db.saving.virement(Db.checking,mtt);
-                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + Db.saving.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + Db.checking.afficher(code2) + "FCFA");
+                         Toast.makeText(TransferActivity.this, "SavingAccount vers CheckingAccount", Toast.LENGTH_SHORT).show();
+                         Db db = new Db();
+                         db.drawalS(mtt);
+                         db.paymenC(mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + db.displayS() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + db.displayC() + "FCFA");
                         startActivity(ca);
                         finish();
                       }
@@ -115,25 +110,26 @@ public class TransferActivity extends AppCompatActivity {
 
                     else if(num==3){
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.saving.getCode();
-                        int code2 = Db.business.getCode();
                              if(Db.saving.getSolde()<=mtt)
-                             Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                             Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                              else{
-                        Toast.makeText(VirementActivity.this, "SavingAccount vers BusinessAccount", Toast.LENGTH_SHORT).show();
-                        Db.saving.virement(Db.business,mtt);
-                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + Db.saving.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + Db.business.afficher(code2) + "FCFA");
+                        Toast.makeText(TransferActivity.this, "SavingAccount vers BusinessAccount", Toast.LENGTH_SHORT).show();
+                         Db db = new Db();
+                         db.drawalS(mtt);
+                         db.paymenB(mtt);
+                       // Db.saving.virement(Db.business,mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + db.displayS() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + db.displayB() + "FCFA");
                         startActivity(ca);
                         finish();
                       }
                     }
                     else
-                        Toast.makeText(VirementActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
 
                 }
              // virement dans BusinessAccount
@@ -144,20 +140,19 @@ public class TransferActivity extends AppCompatActivity {
                     int num = Integer.parseInt(e);
                     if(num==2){
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.business.getCode();
-                        int code2 = Db.saving.getCode();
-                             if(Db.business.getSolde()<=mtt)
-                             Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
-                             else{
-                        Toast.makeText(VirementActivity.this, "BusinessAccount vers SavingAccount", Toast.LENGTH_SHORT).show();
-                        Db.business.virement(Db.saving,mtt);
-
-                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + Db.business.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + Db.saving.afficher(code2) + "FCFA");
+                        if(Db.business.getSolde()<=mtt)
+                        Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                        else{
+                        Toast.makeText(TransferActivity.this, "BusinessAccount vers SavingAccount", Toast.LENGTH_SHORT).show();
+                         Db db = new Db();
+                            db.drawalB(mtt);
+                            db.paymenS(mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + db.displayB() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + db.displayS() + "FCFA");
                         startActivity(ca);
                         finish();
                      }
@@ -165,30 +160,28 @@ public class TransferActivity extends AppCompatActivity {
 
                     else if(num==1){
 
-                        Intent ca = new Intent(VirementActivity.this, DisplayActivity.class);
+                        Intent ca = new Intent(TransferActivity.this, DisplayActivity.class);
                         EditText mt = (EditText) findViewById(R.id.mntt);
                         String mg = mt.getText().toString();
                         int mtt = Integer.parseInt(mg);
-                        int code1= Db.business.getCode();
-                        int code2 = Db.checking.getCode();
                             if(Db.business.getSolde()<=mtt)
-                            Toast.makeText(VirementActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(TransferActivity.this, "solde insuffisant", Toast.LENGTH_SHORT).show();
                             else{
-                        Toast.makeText(VirementActivity.this, "Business vers CheckingAccount", Toast.LENGTH_SHORT).show();
-
-                        Db.business.virement(Db.checking,mtt);
-
-                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + Db.business.afficher(code1) + "FCFA");
-                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + Db.checking.afficher(code2) + "FCFA");
+                        Toast.makeText(TransferActivity.this, "Business vers CheckingAccount", Toast.LENGTH_SHORT).show();
+                         Db db = new Db();
+                         db.drawalB(mtt);
+                          db.paymenC(mtt);
+                        ca.putExtra(EXTRA_MESSAGEM1, "solde restant:\n" + db.displayB() + "FCFA");
+                        ca.putExtra(EXTRA_MESSAGEM2, "solde compte beneficiaire:\n" + db.displayC() + "FCFA");
                         startActivity(ca);
                         finish();
                       }
                     }
                     else
-                        Toast.makeText(VirementActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(TransferActivity.this, "choisir un compte valide", Toast.LENGTH_SHORT).show();
 
-            }*/
             }
+                 }
 
         });
 

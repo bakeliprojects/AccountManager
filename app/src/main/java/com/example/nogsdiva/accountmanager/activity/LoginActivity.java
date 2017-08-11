@@ -1,5 +1,4 @@
 package com.example.nogsdiva.accountmanager.activity;
-
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -34,8 +33,8 @@ import io.realm.Realm;
           account.setCode( 10);
           account.setSolde(50000);
          // test.createAccount(account);
-        Account account1 = realm.copyToRealmOrUpdate(account);
-        if(account1!=null){
+           Account account1 = realm.copyToRealmOrUpdate(account);
+           if(account1!=null){
             Log.d(TAG, "la table est bien enregistrer: ");
             realm.commitTransaction(); }
         else
@@ -60,7 +59,7 @@ import io.realm.Realm;
                 Log.d(TAG, "la table est bien enregistrer: ");
                  realm.commitTransaction(); }
 
-        //ajout table Saving
+        //ajout table
         BusinessAccount busines = new BusinessAccount();
          realm.beginTransaction();
           busines.setCode( 13);
@@ -87,8 +86,9 @@ import io.realm.Realm;
                       startActivity(intent);
 
                 }
-                else
+                else if(logg!=30)
                     Toast.makeText(LoginActivity.this, "mauvais identifiant", Toast.LENGTH_SHORT).show();
+                else if(logg==null)
 
    }
 });
